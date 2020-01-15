@@ -1,0 +1,59 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <canvas height="500" width="500" id="Can"></canvas>
+        <script>
+        function init(){
+            var mycanvas=document.getElementById("Can");
+            var context=mycanvas.getContext("2d");
+            context.beginPath();
+            context.arc(200,200,200,0,2*Math.PI);
+            context.fillStyle="black";
+            context.fill()
+            context.stroke();
+            context.beginPath();
+            context.arc(200,200,10,0,2*Math.PI);
+            context.fillStyle="white";
+            context.fill();
+            context.stroke();
+            context.fillStyle="white";
+            context.textAlign="center";
+            context.textBaseline="middle";
+            context.font="20px Arial";
+            for(var i=1;i<=12;i++)
+            {
+                context.fillStyle="white";
+            context.textAlign="center";
+            context.textBaseline="middle";
+            context.font="20px Arial";
+                context.fillText(i,200*(1+0.9*Math.sin(i*Math.PI/6)),200-200*0.9*(Math.cos(i*Math.PI/6)));
+            }
+            var date=new Date();
+            var hours= date.getHours();
+            var minutes= date.getMinutes();
+            var seconds= date.getSeconds();
+            var fullh= hours%12 + minutes/60 + seconds/3600;
+            var ha=fullh*Math.PI/6;
+            var ma=minutes*Math.PI/30;
+            var sa=seconds*Math.PI/30;
+            context.strokeStyle="white";
+     
+            context.moveTo(200,200);
+            context.lineTo(200*(1+0.4*Math.sin(ha)),200*(1-0.4*Math.cos(ha)));
+            context.lineWidth=4;
+            context.stroke();
+            context.moveTo(200,200);
+            context.lineTo(200*(1+0.6*Math.sin(ma)),200*(1-0.6*Math.cos(ma)));
+            context.lineWidth=3;
+            context.stroke();
+            context.lineWidth=2;
+            context.moveTo(200,200);
+            context.lineTo(200*(1+0.8*Math.sin(sa)),200*(1-0.8*Math.cos(sa)));
+            context.stroke();
+        }
+        setInterval(init,1000);
+        </script>
+        </body>
+</html>
